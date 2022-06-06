@@ -1,0 +1,53 @@
+    {% extends "layouts/master.html" %}
+
+    {% block body %}
+    <div class="row my-5">
+        <div class="col-md-6 my-3">
+            {% if knows %}
+                <h1>List of skill{{knows|pluralize}} </h1>
+            {% endif %}
+
+        </div>
+        <div class="col-md-6 my-3 text-end">
+            <a href="{% url 'create' %}"><h2>Add Skill</h2></a>
+        </div>
+        
+        
+    </div>
+    <div class="row my-5">
+        <div class="col-md-12">
+            
+                
+                <div class="row">
+                    {% for kw in knows %}
+                        <div class="col-md-4 my-3">
+
+                            <div class="card" style="width:18rem;">
+                            <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"> {{kw.title|upper}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted ">{{kw.experience|truncatechars:40}}</h6>
+                                <p class="card-text">{{kw.percent|safe}} % </p>
+                                <a href="{% url 'show' kw.id %}" class="btn btn-info">details...</a>
+                                <hr>
+                                {% for tag in kw.tags.all %}
+                                    <span class="badge bg-success">{{tag.label}}</span>
+                                {% endfor %}
+
+                                
+                                <a class=" btn btn-warning" href="{% url 'delete' kw.id %}">Delete</a>
+                                <a class=" btn btn-warning" href="{% url 'edite' kw.id %}">Edite</a>
+                            </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                    </div>
+                    
+
+            
+        </div>
+        
+    </div>
+    
+    {% endblock  %}

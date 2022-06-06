@@ -1,0 +1,29 @@
+    {% extends "layouts/master.html" %}
+
+    {% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            
+                {% if skill %}
+                
+                    <h1 class="text-center">{{skill.title|upper}} Details</h1>
+                {% endif %}
+                <div class="row">
+                        <div class="col-md-5 mx-auto my-3">
+                            <div class="card-body">
+                                <form action="" method="POST">
+                                    <h2> are you sur to delete {{skill.title|upper}} ?</h2>
+                                    <a href="{% url 'delete' skill.id %}">Delete</a>
+                                    <a href="{% url 'skill-list'%}">Back</a>
+                                </form>
+                                <hr>
+                            </div>
+                        </div>
+                </div>
+                    
+
+            
+        </div>
+    </div>
+    
+    {% endblock  %}

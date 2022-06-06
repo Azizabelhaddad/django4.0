@@ -1,0 +1,39 @@
+    {% extends "layouts/master.html" %}
+
+    {% block body %}
+    <div class="row">
+        <div class="col-md-12">
+            
+                {% if skill %}
+                
+                    <h1 class="text-center">{{skill.title|upper}} Details</h1>
+                {% endif %}
+
+                
+                <div class="row">
+                        <div class="col-md-5 mx-auto my-3">
+                            <div class="card" style="width:18rem;">
+                            <img src="https://images.unsplash.com/photo-1561154464-82e9adf32764?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h5 class="card-title text-center"> {{skill.title|upper}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted ">{{skill.experience|truncatechars:40}}</h6>
+                                <p class="card-text">{{skill.percent|safe}} % </p>
+                                <button class="btn btn-info">details...</button>
+                                <hr>
+                                {% for tag in skill.tags.all %}
+                                    <span class="badge bg-success">{{tag.label}}</span>
+                                {% endfor %}
+                                <a class="btn btn-info" href="{% url 'skill-list'%}">Back</a>
+
+                                
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+            
+        </div>
+    </div>
+    
+    {% endblock  %}
